@@ -1,0 +1,21 @@
+<!-- mat-accordion>mat-expansion-panel>(mat-expansion-panel-header{Lista de clientes}+p{Conteúdo}*2) -->
+<mat-accordion *ngIf="clientes.length > 0">
+    <mat-expansion-panel *ngFor="let cli of clientes">
+        <mat-expansion-panel-header> {{cli.nome}} </mat-expansion-panel-header>
+        <p>{{cli.fone}}</p>
+        <p>{{cli.email}}</p>
+    </mat-expansion-panel>  
+</mat-accordion>
+<p class="mat-body-1" style="text-align: center;" *ngIf="clientes.length <= 0">Nenhum cliente cadastrado</p>
+
+<!-- <mat-expansion-panel>
+    <mat-expansion-panel-header>José</mat-expansion-panel-header>
+    <p>12345678</p>
+    <p>jose@email.com</p>
+</mat-expansion-panel>
+
+<mat-expansion-panel>
+    <mat-expansion-panel-header>Maria</mat-expansion-panel-header>
+    <p>99887766</p>
+    <p>maria@email.com</p>
+</mat-expansion-panel> -->
