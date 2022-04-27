@@ -1,0 +1,43 @@
+<mat-card>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Digite o nome</mat-label>
+        <input matInput type="text" [(ngModel)]="nome">  
+        <button 
+            *ngIf="nome" 
+            matSuffix 
+            mat-icon-button 
+            (click)="nome=''">
+    
+            <mat-icon>close</mat-icon>
+    
+        </button>  
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Digite o fone</mat-label>
+        <input matInput type="text" [(ngModel)]="fone">
+        <button
+            *ngIf="fone"
+            matSuffix
+            mat-icon-button
+            (click)="fone=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Digite o e-mail</mat-label>
+        <input matInput type="text" [(ngModel)]="email">
+        <button
+            *ngIf="email"
+            matSuffix
+            mat-icon-button
+            (click)="email=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    
+    <button color="primary" mat-raised-button (click)="onAdicionarCliente()">Inserir cliente</button>
+
+</mat-card>
