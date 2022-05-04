@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Cliente } from '../cliente.model';
 
 @Component({
   selector: 'app-cliente-lista',
@@ -8,6 +9,6 @@ import { Component, Input } from '@angular/core';
 export class ClienteListaComponent {
 
   @Input()
-  clientes = []
+  clientes: Cliente[] = []
 
 }

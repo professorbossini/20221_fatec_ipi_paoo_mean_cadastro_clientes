@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Cliente } from './clientes/cliente.model';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  clientes = []
+  //meuNumero: number = 2
+  clientes: Cliente[] = []
   onClienteAdicionado (cliente): void{
     //... operador spread
     this.clientes = [...this.clientes, cliente]

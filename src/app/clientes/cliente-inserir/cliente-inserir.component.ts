@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core'
+import { Cliente } from '../cliente.model';
 
 @Component({
     selector: 'app-cliente-inserir',
@@ -8,7 +9,7 @@ import { Component, EventEmitter, Output } from '@angular/core'
 export class ClienteInserirComponent{
 
     @Output()
-    clienteAdicionado = new EventEmitter();
+    clienteAdicionado = new EventEmitter<Cliente>();
 
     nome: string;
     fone: string;
@@ -16,11 +17,10 @@ export class ClienteInserirComponent{
 
     onAdicionarCliente(){
         //1. construir um objeto cliente que contém nome, fone e e-mail
-        const cliente = {
+        const cliente: Cliente = {
             nome: this.nome,
             fone: this.fone,
             email: this.email
-
         }
         //2. passar esse objeto como argumento para o método emit
         this.clienteAdicionado.emit(cliente);
