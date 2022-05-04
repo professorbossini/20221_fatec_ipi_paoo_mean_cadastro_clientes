@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 
 @Component({
     selector: 'app-cliente-inserir',
@@ -7,12 +7,23 @@ import { Component } from '@angular/core'
 })
 export class ClienteInserirComponent{
 
+    @Output()
+    clienteAdicionado = new EventEmitter();
+
     nome: string;
     fone: string;
     email: string;
 
     onAdicionarCliente(){
-        console.log("Inserindo cliente...")
+        //1. construir um objeto cliente que contém nome, fone e e-mail
+        const cliente = {
+            nome: this.nome,
+            fone: this.fone,
+            email: this.email
+
+        }
+        //2. passar esse objeto como argumento para o método emit
+        this.clienteAdicionado.emit(cliente);
     }
 
 }

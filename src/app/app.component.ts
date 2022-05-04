@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-cadastro-clientes';
+
+  clientes = []
+  onClienteAdicionado (cliente): void{
+    //... operador spread
+    this.clientes = [...this.clientes, cliente]
+  }
 }
