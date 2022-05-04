@@ -1,23 +1,35 @@
 <mat-card>
     <!-- { nome : "Ana", fone: "12345678", email: ana@email.com} -->
     <!-- clienteForm = { nome : "Ana", fone: "12345678", email: ana@email.com} -->
-    <form (submit)="onAdicionarCliente(clienteForm.value)" #clienteForm="ngForm">
+    <form (submit)="onAdicionarCliente(clienteForm)" #clienteForm="ngForm">
 
         <mat-form-field appearance="fill">
             <mat-label>Digite o nome</mat-label>
-            <input matInput type="text" ngModel name="nome">  
+            <input 
+                matInput 
+                type="text" 
+                ngModel 
+                name="nome"
+                required
+                minlength="3">  
             <button 
                 *ngIf="nome" 
                 matSuffix 
                 mat-icon-button 
                 (click)="nome=''">        
                 <mat-icon>close</mat-icon>        
-            </button>  
+            </button>
+            <mat-error>Digite um nome válido</mat-error>  
         </mat-form-field>
         
         <mat-form-field appearance="fill">
             <mat-label>Digite o fone</mat-label>
-            <input matInput type="text" ngModel name="fone">
+            <input 
+                matInput 
+                type="text" 
+                ngModel 
+                name="fone"
+                required>
             <button
                 *ngIf="fone"
                 matSuffix
@@ -25,11 +37,17 @@
                 (click)="fone=''">
                 <mat-icon>close</mat-icon>
             </button>
+            <mat-error>Digite um telefone válido</mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="fill">
             <mat-label>Digite o e-mail</mat-label>
-            <input matInput type="text" ngModel name="email">
+            <input 
+                matInput 
+                type="text" 
+                ngModel 
+                name="email"
+                required>
             <button
                 *ngIf="email"
                 matSuffix
@@ -37,6 +55,7 @@
                 (click)="email=''">
                 <mat-icon>close</mat-icon>
             </button>
+            <mat-error>Digite um e-mail válido</mat-error>
         </mat-form-field>
         
         <button 

@@ -17,8 +17,11 @@ export class ClienteInserirComponent{
     email: string;
 
 
-    onAdicionarCliente(cliente: Cliente){
-        this.clienteAdicionado.emit(cliente);
+    onAdicionarCliente(form: NgForm){
+        if (form.invalid){
+            return;
+        }
+        this.clienteAdicionado.emit(form.value);
     }
     // v1
     // onAdicionarCliente(form: NgForm){
