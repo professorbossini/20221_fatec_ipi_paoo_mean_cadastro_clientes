@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { ClienteInserirComponent } from './clientes/cliente-inserir/cliente-inserir.component';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ClienteListaComponent } from './clientes/cliente-lista/cliente-lista.component';
+import { ClienteService } from './clientes/cliente.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ClienteListaComponent } from './clientes/cliente-lista/cliente-lista.co
     MatInputModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [ClienteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,12 +11,13 @@
                 ngModel 
                 name="nome"
                 required
-                minlength="3">  
+                minlength="3"
+                #nomeInput>  
             <button 
-                *ngIf="nome" 
+                *ngIf="clienteForm.value.nome" 
                 matSuffix 
                 mat-icon-button 
-                (click)="nome=''">        
+                (click)="nomeInput.value=''">        
                 <mat-icon>close</mat-icon>        
             </button>
             <mat-error>Digite um nome válido</mat-error>  
@@ -29,12 +30,13 @@
                 type="text" 
                 ngModel 
                 name="fone"
-                required>
+                required
+                #foneInput>
             <button
-                *ngIf="fone"
+                *ngIf="foneInput.value"
                 matSuffix
                 mat-icon-button
-                (click)="fone=''">
+                (click)="foneInput.value=''">
                 <mat-icon>close</mat-icon>
             </button>
             <mat-error>Digite um telefone válido</mat-error>
@@ -47,12 +49,13 @@
                 type="text" 
                 ngModel 
                 name="email"
-                required>
+                required
+                #emailInput>
             <button
-                *ngIf="email"
+                *ngIf="emailInput.value"
                 matSuffix
                 mat-icon-button
-                (click)="email=''">
+                (click)="emailInput.value=''">
                 <mat-icon>close</mat-icon>
             </button>
             <mat-error>Digite um e-mail válido</mat-error>

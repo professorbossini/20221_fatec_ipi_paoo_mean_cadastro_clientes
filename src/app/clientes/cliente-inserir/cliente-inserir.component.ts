@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component } from '@angular/core'
 import { NgForm } from '@angular/forms';
 import { Cliente } from '../cliente.model';
+import { ClienteService } from '../cliente.service';
 
 @Component({
     selector: 'app-cliente-inserir',
@@ -9,28 +10,21 @@ import { Cliente } from '../cliente.model';
 })
 export class ClienteInserirComponent{
 
-    @Output()
-    clienteAdicionado = new EventEmitter<Cliente>();
+    constructor(private clienteService: ClienteService){
 
-    nome: string;
-    fone: string;
-    email: string;
-
+    }
 
     onAdicionarCliente(form: NgForm){
         if (form.invalid){
             return;
         }
-        this.clienteAdicionado.emit(form.value);
-    }
-    // v1
-    // onAdicionarCliente(form: NgForm){
-    //     const cliente: Cliente = {
-    //         nome: form.value.nome,
-    //         fone: form.value.fone,
-    //         email: form.value.email
-    //     }
-    //     this.clienteAdicionado.emit(cliente)
-    // }
-
+        console.log("Form está válido")
+        this.clienteService.adicionarCliente(
+            form.value.nome,
+            form.value.fone,
+            form.value.email
+        )
+        console.log("Foi sim inserido")
+        
+    }   
 }
