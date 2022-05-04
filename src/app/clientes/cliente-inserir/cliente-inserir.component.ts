@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core'
+import { NgForm } from '@angular/forms';
 import { Cliente } from '../cliente.model';
 
 @Component({
@@ -15,15 +16,18 @@ export class ClienteInserirComponent{
     fone: string;
     email: string;
 
-    onAdicionarCliente(){
-        //1. construir um objeto cliente que contém nome, fone e e-mail
-        const cliente: Cliente = {
-            nome: this.nome,
-            fone: this.fone,
-            email: this.email
-        }
-        //2. passar esse objeto como argumento para o método emit
+
+    onAdicionarCliente(cliente: Cliente){
         this.clienteAdicionado.emit(cliente);
     }
+    // v1
+    // onAdicionarCliente(form: NgForm){
+    //     const cliente: Cliente = {
+    //         nome: form.value.nome,
+    //         fone: form.value.fone,
+    //         email: form.value.email
+    //     }
+    //     this.clienteAdicionado.emit(cliente)
+    // }
 
 }
