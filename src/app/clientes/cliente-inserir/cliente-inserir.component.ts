@@ -18,13 +18,11 @@ export class ClienteInserirComponent{
         if (form.invalid){
             return;
         }
-        console.log("Form está válido")
         this.clienteService.adicionarCliente(
             form.value.nome,
             form.value.fone,
             form.value.email
         )
-        console.log("Foi sim inserido")
         
     }   
 }
