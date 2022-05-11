@@ -1,14 +1,28 @@
 const express = require ('express')
 const app = express()
 
-app.use((req, res, next) => {
-    console.log("Chegou uma requisição") 
-    next()
-})
+const clientes = [
+    {
+        id: '1',
+        nome: 'José',
+        fone: '12345678',
+        email: 'jose@email.com'
+    },
+    {
+        id: '2',
+        nome: "Antônio",
+        fone: '98765432',
+        email: 'antonio@email.com'
+    }
+]
 
 
-app.use((req, res) => {
-    res.send('Hello from the Back End (Express)')
+//localhost:3000/api/clientes
+app.use('/api/clientes', (req, res) => {
+    res.status(200).json({
+        mensagem: "Tudo OK",
+        clientes: clientes
+    })
 })
 
 module.exports = app
