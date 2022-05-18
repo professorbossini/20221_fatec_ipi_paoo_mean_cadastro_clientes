@@ -1,6 +1,9 @@
 const express = require ('express')
+const cors = require ('cors')
 const app = express()
-
+app.use(cors())
+//req.body pode ser tratado como um objeto JSON
+app.use(express.json())
 const clientes = [
     {
         id: '1',
@@ -10,19 +13,25 @@ const clientes = [
     },
     {
         id: '2',
-        nome: "Antônio",
+        nome: "Maria",
         fone: '98765432',
-        email: 'antonio@email.com'
+        email: 'maria@email.com'
     }
 ]
 
-
 //localhost:3000/api/clientes
-app.use('/api/clientes', (req, res) => {
+app.get('/api/clientes', (req, res) => {
     res.status(200).json({
         mensagem: "Tudo OK",
         clientes: clientes
     })
 })
+
+//localhost:3000/api/clientes
+app.post('/api/clientes', (req, res) => {
+    console.log(req.body)
+    res.status(201).json({mensagem: 'Cliente inserido'})
+})
+
 
 module.exports = app
