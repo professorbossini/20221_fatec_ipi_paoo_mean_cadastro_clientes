@@ -24,24 +24,11 @@ mongoose.connect(`mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_CL
 app.use(cors())
 //req.body pode ser tratado como um objeto JSON
 app.use(express.json())
-const clientes = [
-    {
-        id: '1',
-        nome: 'José',
-        fone: '12345678',
-        email: 'jose@email.com'
-    },
-    {
-        id: '2',
-        nome: "Maria",
-        fone: '98765432',
-        email: 'maria@email.com'
-    }
-]
 
 //localhost:3000/api/clientes
 app.get('/api/clientes', (req, res) => {
     Cliente.find().then(documents => {
+        console.log(documents)
         res.status(200).json({
             mensagem: "Tudo OK",
             clientes: documents
