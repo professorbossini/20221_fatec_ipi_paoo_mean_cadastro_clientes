@@ -31,12 +31,11 @@ export class ClienteListaComponent implements OnInit, OnDestroy{
     this.clientesSubscription.unsubscribe()    
   }
 
+  onDelete (id: string): void{
+    this.clienteService.removerCliente(id);
+  }
 
-  // private clienteService: ClienteService;
 
-  // constructor (clienteService: ClienteService){
-  //   this.clienteService = clienteService;
-  // }
 
 
 }
