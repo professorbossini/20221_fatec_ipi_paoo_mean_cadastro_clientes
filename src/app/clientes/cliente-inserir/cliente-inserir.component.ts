@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Cliente } from '../cliente.model';
 import { ClienteService } from '../cliente.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ClienteInserirComponent implements OnInit{
 
     private modo: string = "criar"
     private idCliente: string
+    public cliente: Cliente
     constructor(
         private clienteService: ClienteService,
         private route: ActivatedRoute
@@ -24,6 +26,8 @@ export class ClienteInserirComponent implements OnInit{
             if (paramMap.has('idCliente')){
                 this.modo = "editar"
                 this.idCliente = paramMap.get("idCliente")
+                this.cliente = this.clienteService.getCliente(this.idCliente)
+
             }   
             else{
                 this.modo = "criar"
@@ -32,15 +36,25 @@ export class ClienteInserirComponent implements OnInit{
         })
     }
 
-    onAdicionarCliente(form: NgForm){
+    onSalvarCliente(form: NgForm){
         if (form.invalid){
             return;
         }
-        this.clienteService.adicionarCliente(
-            form.value.nome,
-            form.value.fone,
-            form.value.email
-        )
+        if (this.modo === "criar"){
+            this.clienteService.adicionarCliente(
+                form.value.nome,
+                form.value.fone,
+                form.value.email
+            )
+        }
+        else{
+            this.clienteService.atualizarCliente(
+                this.idCliente,
+                form.value.nome,
+                form.value.fone,
+                form.value.email
+            )
+        }
         form.resetForm()
         
     }   

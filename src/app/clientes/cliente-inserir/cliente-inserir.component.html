@@ -1,14 +1,14 @@
 <mat-card>
     <!-- { nome : "Ana", fone: "12345678", email: ana@email.com} -->
     <!-- clienteForm = { nome : "Ana", fone: "12345678", email: ana@email.com} -->
-    <form (submit)="onAdicionarCliente(clienteForm)" #clienteForm="ngForm">
+    <form (submit)="onSalvarCliente(clienteForm)" #clienteForm="ngForm">
 
         <mat-form-field appearance="fill">
             <mat-label>Digite o nome</mat-label>
             <input 
                 matInput 
                 type="text" 
-                ngModel 
+                [ngModel]="cliente?.nome" 
                 name="nome"
                 required
                 minlength="3"
@@ -28,7 +28,7 @@
             <input 
                 matInput 
                 type="text" 
-                ngModel 
+                [ngModel]="cliente?.fone" 
                 name="fone"
                 required
                 #foneInput>
@@ -47,7 +47,7 @@
             <input 
                 matInput 
                 type="text" 
-                ngModel 
+                [ngModel]="cliente?.email" 
                 name="email"
                 required
                 #emailInput>
@@ -64,7 +64,7 @@
         <button 
                 color="accent" 
                 mat-raised-button>
-            Inserir cliente
+            Salvar cliente
         </button>
     </form>
 

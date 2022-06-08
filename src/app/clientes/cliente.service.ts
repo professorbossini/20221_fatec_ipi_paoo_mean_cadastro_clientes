@@ -67,12 +67,17 @@ export class ClienteService{
         });
     }
 
-    // adicionarCliente (nome: string, fone: string, email: string): void {
-    //     this.clientes.push({
-    //         nome, fone, email
-    //     })
-    //     this.listaClientesAtualizada.next([...this.clientes])    
-    // }
+    atualizarCliente(id: string, nome: string, fone: string, email: string){
+        const cliente: Cliente = {nome, fone, email}
+        this.httpClient.put(`http://localhost:3000/api/clientes/${id}`, cliente)
+        .subscribe(res => {
+            const copia = [...this.clientes]
+            const indice = copia.findIndex(cli => cli.id === id)
+            copia[indice] = {...cliente, id}
+            this.clientes = copia
+            this.listaClientesAtualizada.next([...this.clientes])
+        })
+    }
 
     getListaDeClientesAtualizadaObservable(){
         return this.listaClientesAtualizada.asObservable()

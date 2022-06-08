@@ -36,6 +36,23 @@ app.get('/api/clientes', (req, res) => {
     })
 })
 
+app.put('/api/clientes/:id', (req, res) => {
+    const cliente = new Cliente({
+        ...req.body,
+        _id: req.params.id
+    })
+    Cliente.updateOne(
+        {_id: req.params.id },
+        cliente
+    )
+    .then(mongoResponse => {
+        console.log(mongoResponse)
+        res.status(200).json({
+            mensagem: 'Atualização realizada com sucesso'
+        })
+    })
+})
+
 //localhost:3000/api/clientes
 app.post('/api/clientes', (req, res) => {
     //construir um objeto do tipo Cliente com os dados vindos da requisição
