@@ -17,6 +17,7 @@ import { ClienteInserirComponent } from './clientes/cliente-inserir/cliente-inse
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ClienteListaComponent } from './clientes/cliente-lista/cliente-lista.component';
 import { ClienteService } from './clientes/cliente.service';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ClienteService } from './clientes/cliente.service';
     ClienteListaComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,

@@ -47,8 +47,12 @@ app.post('/api/clientes', (req, res) => {
     //exibir com um log
     console.log(cliente)
     //armazenar no mongodb
-    cliente.save()
-    res.status(201).json({mensagem: 'Cliente inserido'})
+    cliente.save().then((clienteInserido) => {
+        res.status(201).json({
+            mensagem: 'Cliente inserido',
+            id: clienteInserido._id
+        })
+    })
 })
 
 //localhost:3000/api/clientes/123456
