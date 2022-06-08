@@ -1,6 +1,6 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms';
-import { Cliente } from '../cliente.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ClienteService } from '../cliente.service';
 
 @Component({
@@ -8,10 +8,28 @@ import { ClienteService } from '../cliente.service';
     templateUrl: './cliente-inserir.component.html',
     styleUrls: ['./cliente-inserir.component.css']
 })
-export class ClienteInserirComponent{
+export class ClienteInserirComponent implements OnInit{
 
-    constructor(private clienteService: ClienteService){
+    private modo: string = "criar"
+    private idCliente: string
+    constructor(
+        private clienteService: ClienteService,
+        private route: ActivatedRoute
+    ){
 
+    }
+
+    ngOnInit(): void{
+        this.route.paramMap.subscribe((paramMap: ParamMap) => {
+            if (paramMap.has('idCliente')){
+                this.modo = "editar"
+                this.idCliente = paramMap.get("idCliente")
+            }   
+            else{
+                this.modo = "criar"
+                this.idCliente = null
+            }
+        })
     }
 
     onAdicionarCliente(form: NgForm){

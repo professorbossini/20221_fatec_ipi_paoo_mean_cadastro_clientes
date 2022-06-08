@@ -33,6 +33,10 @@ export class ClienteService{
         })
     }
 
+    getCliente (id: string): Cliente {
+        return {...this.clientes.find(cli => cli.id === id)}   
+    }
+
     removerCliente(id: string): void{
         this.httpClient.delete(`http://localhost:3000/api/clientes/${id}`)
         .subscribe(() => {
