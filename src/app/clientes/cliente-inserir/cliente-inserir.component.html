@@ -1,7 +1,6 @@
 <mat-card>
-    <!-- { nome : "Ana", fone: "12345678", email: ana@email.com} -->
-    <!-- clienteForm = { nome : "Ana", fone: "12345678", email: ana@email.com} -->
-    <form (submit)="onSalvarCliente(clienteForm)" #clienteForm="ngForm">
+    <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+    <form (submit)="onSalvarCliente(clienteForm)" #clienteForm="ngForm" *ngIf="!estaCarregando">
 
         <mat-form-field appearance="fill">
             <mat-label>Digite o nome</mat-label>
