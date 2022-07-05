@@ -26,7 +26,14 @@ export class ClienteInserirComponent implements OnInit{
             if (paramMap.has('idCliente')){
                 this.modo = "editar"
                 this.idCliente = paramMap.get("idCliente")
-                this.cliente = this.clienteService.getCliente(this.idCliente)
+                this.clienteService.getCliente(this.idCliente).subscribe(dadosCli => {
+                    this.cliente = {
+                        id: dadosCli._id,
+                        nome: dadosCli.nome,
+                        fone: dadosCli.fone,
+                        email: dadosCli.email
+                    }
+                })
 
             }   
             else{

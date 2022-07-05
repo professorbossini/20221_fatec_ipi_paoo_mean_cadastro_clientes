@@ -36,6 +36,16 @@ app.get('/api/clientes', (req, res) => {
     })
 })
 
+app.get('/api/clientes/:id', (req, res) => {
+    //req.params.id {id: 123456}
+    Cliente.findById(req.params.id).then(cli => {
+        if (cli)
+            res.status(200).json(cli)
+        else
+            res.status(404).json({mensagem: "Cliente não encontrado!"})
+    })
+})
+
 app.put('/api/clientes/:id', (req, res) => {
     const cliente = new Cliente({
         ...req.body,

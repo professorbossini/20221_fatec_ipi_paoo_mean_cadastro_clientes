@@ -33,8 +33,9 @@ export class ClienteService{
         })
     }
 
-    getCliente (id: string): Cliente {
-        return {...this.clientes.find(cli => cli.id === id)}   
+    getCliente (id: string){
+        //return {...this.clientes.find(cli => cli.id === id)}   
+        return this.httpClient.get<{_id: string, nome: string, fone: string, email: string}>(`http://localhost:3000/api/clientes/${id}`)
     }
 
     removerCliente(id: string): void{
