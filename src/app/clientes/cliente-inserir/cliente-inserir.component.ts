@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Cliente } from '../cliente.model';
 import { ClienteService } from '../cliente.service';
+import { mimeTypeValidator } from './mime-type.validator';
 
 @Component({
     selector: 'app-cliente-inserir',
@@ -16,6 +17,7 @@ export class ClienteInserirComponent implements OnInit{
     public cliente: Cliente
     public estaCarregando: boolean = false
     form: FormGroup;
+    previewImagem: string;
     constructor(
         private clienteService: ClienteService,
         private route: ActivatedRoute
@@ -33,6 +35,10 @@ export class ClienteInserirComponent implements OnInit{
             }),
             email: new FormControl(null, {
                 validators: [Validators.email]
+            }),
+            imagem: new FormControl(null, {
+                validators: [Validators.required],
+                asyncValidators: [mimeTypeValidator]
             })
         })
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -61,6 +67,17 @@ export class ClienteInserirComponent implements OnInit{
                 this.idCliente = null
             }
         })
+    }
+
+    onImagemSelecionada (event: Event){
+        const arquivo = (event.target as HTMLInputElement).files[0]
+        this.form.patchValue({'imagem': arquivo})
+        this.form.get('imagem').updateValueAndValidity()
+        const reader = new FileReader()
+        reader.onload = () => {
+            this.previewImagem = reader.result as string
+        }
+        reader.readAsDataURL(arquivo)
     }
 
     onSalvarCliente(){

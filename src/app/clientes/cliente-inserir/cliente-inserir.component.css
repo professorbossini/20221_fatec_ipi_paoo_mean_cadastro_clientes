@@ -12,3 +12,13 @@ mat-spinner {
 input[type="file"] {
     visibility: hidden;
 }
+/* ffd8ffe0 */
+/* ffd8ffe1 */
+.imagem-preview {
+    height: 5rem;
+    margin: 1rem 0;
+}
+
+.imagem-preview img {
+    height: 100%;
+}

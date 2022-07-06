@@ -1,6 +1,7 @@
 <mat-card>
     <mat-spinner *ngIf="estaCarregando"></mat-spinner>
     <!-- template-driven form -->
+    <!-- reactive form -->
     <form [formGroup]="form"(submit)="onSalvarCliente()" *ngIf="!estaCarregando">
 
         <mat-form-field appearance="fill">
@@ -23,7 +24,14 @@
 
         <div>
             <button mat-stroked-button type="button" (click)="selecionaArquivo.click()">Selecionar Imagem</button>
-            <input type="file" #selecionaArquivo>
+            <input type="file" (change)="onImagemSelecionada($event)" #selecionaArquivo>
+        </div>
+
+        <div class="imagem-preview">
+            <img 
+                [src]="previewImagem" 
+                [alt]="form.value.nome" 
+                *ngIf="previewImagem && previewImagem !== '' && form.get('imagem').valid">
         </div>
         
         <mat-form-field appearance="fill">
