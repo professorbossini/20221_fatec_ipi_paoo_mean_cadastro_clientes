@@ -21,6 +21,11 @@
             </button>
             <mat-error>Digite um nome válido</mat-error>  
         </mat-form-field>
+
+        <div>
+            <button mat-stroked-button type="button" (click)="selecionaArquivo.click()">Selecionar Imagem</button>
+            <input type="file" #selecionaArquivo>
+        </div>
         
         <mat-form-field appearance="fill">
             <mat-label>Digite o fone</mat-label>
